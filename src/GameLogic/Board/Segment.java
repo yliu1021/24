@@ -8,13 +8,13 @@ public class Segment {
     private Location start;
     private Location end;
 
-    public Segment(Location start, Location end) throws LocationNotAligned{
+    public Segment(Location start, Location end) throws LocationNotAlignedException {
         int dY = end.getCol() - start.getCol();
         int dX = end.getRow() - start.getRow();
         if (start.getCol() == end.getCol() || start.getRow() == end.getRow() || Math.abs(dX) == Math.abs(dY)){
         this.start = start;
         this.end = end;
-        }else throw new LocationNotAligned("start and end do not align");
+        }else throw new LocationNotAlignedException("start and end do not align");
     }
 
     public int length(){ //length of a segment

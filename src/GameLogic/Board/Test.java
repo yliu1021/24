@@ -10,7 +10,7 @@ public class Test {
         Segment s = null;
         try{
             s = new Segment(start,end);
-        }catch(LocationNotAligned e) {
+        }catch(LocationNotAlignedException e) {
             System.out.printf("thrown exception");
         }
         System.out.println(s.length()); //3

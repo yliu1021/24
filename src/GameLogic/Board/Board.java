@@ -1,11 +1,12 @@
 package GameLogic.Board;
 
+import GameLogic.Board.Occupants.Occupant;
 import GameLogic.Player;
 
 /**
  * Created by Yuhan on 5/28/16.
  */
-public class Board implements Occupant{
+public class Board implements Occupant {
 
     Player player1 = new Player();
     Player player2 = new Player();
