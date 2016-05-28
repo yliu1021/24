@@ -1,5 +1,5 @@
 package GameLogic.Powerups;
-import GameLogic.Board;
+import GameLogic.Board.Board;
 
 /**
  * Created by Yuhan on 5/28/16.
