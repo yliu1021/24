@@ -6,7 +6,7 @@ import GameLogic.Player;
 /**
  * Created by Yuhan on 5/28/16.
  */
-public class Board implements Occupant {
+public class Board {
 
     Player player1 = new Player();
     Player player2 = new Player();
@@ -18,25 +18,21 @@ public class Board implements Occupant {
     }
 
     public void setOccupant(Occupant o,Location l,Player p){
-
+        int row = l.getRow();
+        int col = l.getCol();
+        occupants[row][col] = o;
+        Segment[] s = evaluate();
     }
 
     public Segment[] evaluate(){
-
         return null;
     }
 
     public void clear(Segment[] s){
+        for (int i = 0;i < s.length; i++){
+            s[i] = null;
+        }
 
     }
 
-    @Override
-    public Location getLocation() {
-        return null;
-    }
-
-    @Override
-    public void setLocation(Location x) {
-
-    }
 }
