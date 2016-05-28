@@ -9,6 +9,10 @@ public class SubtractOperator implements Operator{
 
     private int precedence;
 
+    public SubtractOperator() {
+        this(5);
+    }
+
     public SubtractOperator(int precedence) {
         this.precedence = precedence;
     }

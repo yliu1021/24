@@ -6,6 +6,10 @@ public class MultiplyOperator implements Operator{
 
     private int precedence;
 
+    public MultiplyOperator() {
+        this(10);
+    }
+
     public MultiplyOperator(int precedence) {
         this.precedence = precedence;
     }

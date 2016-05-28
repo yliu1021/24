@@ -9,6 +9,10 @@ public class DivideOperator implements Operator{
 
     private int precedence;
 
+    public DivideOperator() {
+        this(10);
+    }
+
     public DivideOperator(int precedence) {
         this.precedence = precedence;
     }

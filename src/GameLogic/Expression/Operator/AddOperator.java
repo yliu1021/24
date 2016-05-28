@@ -7,6 +7,10 @@ public class AddOperator implements Operator{
 
     private int precedence;
 
+    public AddOperator() {
+        this(5);
+    }
+
     public AddOperator(int precedence) {
         this.precedence = precedence;
     }

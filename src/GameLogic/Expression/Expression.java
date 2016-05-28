@@ -13,7 +13,7 @@ public class Expression {
 
     private List<Object> ops;
 
-    void addOperand(Operand op) throws CorruptExpressionListException {
+    void addOperand(Operand op) {
         if (ops.isEmpty()) {
             ops.add(op);
             return;
@@ -27,7 +27,7 @@ public class Expression {
         }
     }
 
-    void addOperator(Operator op) throws CorruptExpressionListException {
+    void addOperator(Operator op) {
         if (ops.isEmpty()) {
             throw new CorruptExpressionListException("Cannot add operator to an empty expression");
         }
@@ -40,15 +40,15 @@ public class Expression {
         }
     }
 
-    Operand evaluate() throws CorruptExpressionListException {
-        return evaluate(ops);
+    Operand evaluate() {
+        return evaluate(ops, 0, ops.size());
     }
 
-    private Operand evaluate(List l) throws CorruptExpressionListException {
-        if (l.size() < 3) {
+    private Operand evaluate(List l, int start, int end) {
+        if (end - start < 3) {
             throw new CorruptExpressionListException("Not enough operators/operands");
         }
-        if (l.size() == 3) {
+        if (end - start == 3) {
             Operand op1;
             Operand op2;
             Operator operator;
@@ -73,14 +73,14 @@ public class Expression {
             return operator.apply(op1, op2);
         }
         int operatorInd = 1;
-        Object o = l.get(1);
+        Object o = l.get(start + 1);
         Operator operator;
         if (o instanceof Operator)
-            operator = (Operator)l.get(1);
+            operator = (Operator)o;
         else
             throw new CorruptExpressionListException("Operator not found");
 
-        for (int i = 3; i < l.size(); i += 2) {
+        for (int i = 3; i < end; i += 2) {
             o = l.get(i);
             if (o instanceof Operator) {
                 Operator op = (Operator) o;
@@ -88,9 +88,15 @@ public class Expression {
                     operatorInd = i;
                     operator = op;
                 }
+            } else {
+                throw new CorruptExpressionListException("Operator not in right place");
             }
         }
-        return null;
+
+        Operand left = evaluate(l, operatorInd + 1, end);
+        Operand right = evaluate(l, 0, operatorInd);
+
+        return operator.apply(left, right);
     }
 
     void clear() {
