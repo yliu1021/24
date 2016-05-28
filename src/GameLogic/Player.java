@@ -20,10 +20,10 @@ public class Player {
     double timePenalty = 0.0;
 
     public int getScore() {
-
+        return 0;
     }
 
     public int getExpressionValue() {
-
+        return 0;
     }
 }

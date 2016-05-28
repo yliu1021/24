@@ -8,8 +8,8 @@ public class AddOperator implements Operator{
         int d1 = a.getDenominator();
         int d2 = b.getDenominator();
         int n1 = a.getNumerator();
-        int n2 = a.getNumerator();
-        Operand fraction = new Operand((n1*d2 + n2*d1 )/ d1*d2);
+        int n2 = b.getNumerator();
+        Operand fraction = new Operand((n1*d2 + n2*d1), d1*d2);
         fraction.simplify();
         return fraction;
     }
