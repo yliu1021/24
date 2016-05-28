@@ -30,7 +30,20 @@ public class Board {
 
     public void clear(Segment[] s){
         for (int i = 0;i < s.length; i++){
-            s[i] = null;
+            Location start = s[i].getStart();
+            Location end = s[i].getEnd();
+            int row = start.getRow();
+            int col = start.getCol();
+
+            int dX = end.getRow() - start.getRow();
+            int dY = end.getCol() - start.getCol();
+            while(!start.equals(end)){
+                occupants[row][col] = null;
+                row+= dX;
+                col += dY;
+                start.setRow(row);
+                start.setCol(col);
+            }
         }
 
     }

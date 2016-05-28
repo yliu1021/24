@@ -14,11 +14,38 @@ public class Location {
 
     }
 
-    public int getRow(){
+    public int getRow() {
         return row;
     }
 
-    public int getCol(){
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
         return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Location)) return false;
+
+        Location location = (Location) o;
+
+        if (getRow() != location.getRow()) return false;
+        return getCol() == location.getCol();
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getRow();
+        result = 31 * result + getCol();
+        return result;
     }
 }

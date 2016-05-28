@@ -8,6 +8,16 @@ public class Segment {
     private Location start;
     private Location end;
 
+    public Location getStart(){
+
+        return this.start;
+    }
+    public Location getEnd(){
+
+        return this.end;
+    }
+
+
     public Segment(Location start, Location end) throws LocationNotAlignedException {
         int dY = end.getCol() - start.getCol();
         int dX = end.getRow() - start.getRow();
