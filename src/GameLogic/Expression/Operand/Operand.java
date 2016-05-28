@@ -1,8 +1,5 @@
 package GameLogic.Expression.Operand;
 
-/**
- * Created by Yuhan on 5/28/16.
- */
 public class Operand {
     private int numerator;
     private int denominator;
