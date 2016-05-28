@@ -1,4 +1,4 @@
-package GameLogic.Expression.Operations;
+package GameLogic.Expression.Operator;
 
 /**
  * Created by Yuhan on 5/28/16.
