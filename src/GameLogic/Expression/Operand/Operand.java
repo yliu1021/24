@@ -34,6 +34,12 @@ public class Operand {
         int gcf = gcf(numerator, denominator);
         numerator /= gcf;
         denominator /= gcf;
+
+        if (numerator > 0 && denominator < 0)
+        {
+            numerator = -numerator;
+            denominator = -denominator;
+        }
     }
 
     private int gcf(int a, int b) {

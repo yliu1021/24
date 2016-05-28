@@ -22,20 +22,22 @@ public class SubtractOperatorTest {
             Operator op = new GameLogic.Expression.Operator.SubtractOperator();
 
             Operand result = op.apply(op1, op2);
-            assert result.getNumerator() == -3 && result.getDenominator() == 1 : "im retarded";
+            System.out.println(result.getNumerator());
+            System.out.println(result.getDenominator());
         }
 
         public static void simplifyTest() {
             Operand op1 = new Operand(5, 4);
-            Operand op2 = new Operand(9, 7);
+            Operand op2 = new Operand(10, 7);
             Operator op = new GameLogic.Expression.Operator.SubtractOperator();
 
             Operand result = op.apply(op1, op2);
-            assert result.getNumerator() == 1 && result.getDenominator() == -28: "Did not get expected results";
+            System.out.println(result.getNumerator());
+            System.out.println(result.getDenominator());
         }
 
         public static void main(String[] args) {
-            System.out.println("Testing...");
+            System.out.println("q..");
             test();
             System.out.println("Tests complete");
         }

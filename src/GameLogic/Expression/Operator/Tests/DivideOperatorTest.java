@@ -30,8 +30,8 @@ public class DivideOperatorTest {
     }
 
     public static void simplifyTest() {
-        Operand op1 = new Operand(-2, 4);
-        Operand op2 = new Operand(8, 4);
+        Operand op1 = new Operand(2, 4);
+        Operand op2 = new Operand(87,32);
         Operator op = new DivideOperator();
 
         Operand result = op.apply(op1, op2);

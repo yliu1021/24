@@ -24,7 +24,8 @@ public class AddOperatorTest {
         Operator op = new AddOperator();
 
         Operand result = op.apply(op1, op2);
-        assert result.getNumerator() == 7 && result.getDenominator() == 1;
+        System.out.println(result.getNumerator());
+        System.out.println(result.getDenominator());
     }
 
     public static void simplifyTest() {
@@ -33,7 +34,8 @@ public class AddOperatorTest {
         Operator op = new AddOperator();
 
         Operand result = op.apply(op1, op2);
-        assert result.getNumerator() == 5 && result.getDenominator() == 4 : "Did not get expected results";
+        System.out.println(result.getNumerator());
+        System.out.println(result.getDenominator());
     }
 
     public static void main(String[] args) {

@@ -28,6 +28,5 @@ public class SubtractOperator implements Operator{
         negB.simplify();
         return a1.apply(a,negB);
 
-// negative is on the denominator
     }
 }

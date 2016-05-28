@@ -28,6 +28,5 @@ public class MultiplyOperator implements Operator{
         op.simplify();
         return op;
 
-        // negative is on numerator
     }
 }

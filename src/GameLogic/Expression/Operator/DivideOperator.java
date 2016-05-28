@@ -28,6 +28,5 @@ public class DivideOperator implements Operator{
         negB.simplify();
         return op.apply(a,negB);
 
-        // negative is on the denominator
     }
 }
