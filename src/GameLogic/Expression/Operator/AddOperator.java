@@ -4,6 +4,22 @@ import GameLogic.Expression.Operand.Operand;
 
 
 public class AddOperator implements Operator{
+
+    private int precedence;
+
+    public AddOperator(int precedence) {
+        this.precedence = precedence;
+    }
+
+    public int getPrecedence() {
+        return precedence;
+    }
+
+    public void setPrecedence(int precedence) {
+        this.precedence = precedence;
+    }
+
+    @Override
     public Operand apply(Operand a, Operand b){
         int d1 = a.getDenominator();
         int d2 = b.getDenominator();

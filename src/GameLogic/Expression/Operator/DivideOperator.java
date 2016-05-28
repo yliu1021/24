@@ -7,11 +7,24 @@ import GameLogic.Expression.Operand.Operand;
  */
 public class DivideOperator implements Operator{
 
+    private int precedence;
+
+    public DivideOperator(int precedence) {
+        this.precedence = precedence;
+    }
+
+    public int getPrecedence() {
+        return precedence;
+    }
+
+    public void setPrecedence(int precedence) {
+        this.precedence = precedence;
+    }
 
     @Override
     public Operand apply(Operand a, Operand b) {
         Operand negB = new Operand(b.getDenominator(),b.getNumerator());
-        MultiplyOperator op = new MultiplyOperator();
+        MultiplyOperator op = new MultiplyOperator(precedence);
         negB.simplify();
         return op.apply(a,negB);
 
