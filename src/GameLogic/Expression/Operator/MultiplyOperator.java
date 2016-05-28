@@ -9,7 +9,7 @@ public class MultiplyOperator implements Operator{
     public Operand apply(Operand a, Operand b) {
         int n1 = a.getNumerator();
         int n2 = b.getNumerator();
-        int d1 = b.getDenominator();
+        int d1 = a.getDenominator();
         int d2 = b.getDenominator();
         Operand op = new Operand(n1*n2,d1*d2);
         op.simplify();

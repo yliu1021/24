@@ -16,8 +16,13 @@ public class Player {
     List<Powerup> validPowerups = new ArrayList();
     Expression expression;
 
-    int score = 0;
-    double timePenalty = 0.0;
+    private double timePenalty;
+    private int numWins;
+
+    public Player(){
+        this.timePenalty = 0;
+
+    }
 
     public int getScore() {
         return 0;

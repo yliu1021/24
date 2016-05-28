@@ -9,6 +9,7 @@ public class SubtractOperator implements Operator{
     public Operand apply(Operand a, Operand b){
         Operand negB = new Operand(-b.getNumerator(),b.getDenominator());
         AddOperator a1 = new AddOperator();
+        negB.simplify();
         return a1.apply(a,negB);
 
 
