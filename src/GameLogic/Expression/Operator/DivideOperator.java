@@ -10,6 +10,9 @@ public class DivideOperator implements Operator{
 
     @Override
     public Operand apply(Operand a, Operand b) {
-        return null;
+        Operand negB = new Operand(b.getDenominator(),b.getNumerator());
+        MultiplyOperator op = new MultiplyOperator();
+        negB.simplify();
+        return op.apply(a,negB);
     }
 }
