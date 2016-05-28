@@ -1,13 +1,38 @@
-package GameLogic.Board.Occupants;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package GameLogic.Board.Occupants;
+
+import GameLogic.Board.Location;
+import GameLogic.Expression.Operand.Operand;
 
 /**
  *
  * @author James
  */
 public class Number implements Occupant{
-    
+
+    private Location location;
+
+    private Operand value;
+
+    public Number(Location location, Operand operand) {
+        this.location = location;
+        this.value = operand;
+    }
+
+    public Operand getValue() {
+        return value;
+    }
+
+    public void setValue(Operand value) {
+        this.value = value;
+    }
+
+    @Override
+    public Location getLocation() {
+        return location;
+    }
+
+    @Override
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }

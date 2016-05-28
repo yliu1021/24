@@ -20,6 +20,5 @@ public class Location {
 
     public int getCol(){
         return col;
-
     }
 }
