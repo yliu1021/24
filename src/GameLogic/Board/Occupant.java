@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package GameLogic.Board;
 
-/**
- *
- * @author James
- */
+import GameLogic.Board.Location;
+
+
 public interface Occupant {
     public Location getLocation();
+
     public void setLocation(Location x);
 }
