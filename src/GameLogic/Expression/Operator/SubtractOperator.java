@@ -33,4 +33,9 @@ public class SubtractOperator implements Operator{
         return a1.apply(a,negB);
 
     }
+
+    @Override
+    public String toString() {
+        return "Operation: -";
+    }
 }

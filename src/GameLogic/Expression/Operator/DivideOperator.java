@@ -36,4 +36,9 @@ public class DivideOperator implements Operator{
         return op.apply(a,negB);
 
     }
+
+    @Override
+    public String toString() {
+        return "Operation: /";
+    }
 }

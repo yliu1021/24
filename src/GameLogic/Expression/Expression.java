@@ -13,6 +13,10 @@ public class Expression {
 
     private List<Object> ops;
 
+    public Expression() {
+        ops = new ArrayList<>();
+    }
+
     void addOperand(Operand op) {
         if (ops.isEmpty()) {
             ops.add(op);
@@ -45,6 +49,9 @@ public class Expression {
     }
 
     private Operand evaluate(List l, int start, int end) {
+        if (end - start == 1) {
+            return (Operand)l.get(start);
+        }
         if (end - start < 3) {
             throw new CorruptExpressionListException("Not enough operators/operands");
         }
@@ -52,19 +59,19 @@ public class Expression {
             Operand op1;
             Operand op2;
             Operator operator;
-            Object o = l.get(0);
+            Object o = l.get(start);
             if (o instanceof Operand) {
                 op1 = (Operand) o;
             } else {
                 throw new CorruptExpressionListException("Operand not at beginning of list");
             }
-            o = l.get(1);
+            o = l.get(start+1);
             if (o instanceof Operator) {
                 operator = (Operator) o;
             } else {
                 throw new CorruptExpressionListException("Operator not in between 2 operators");
             }
-            o = l.get(2);
+            o = l.get(start+2);
             if (o instanceof Operand) {
                 op2 = (Operand) o;
             } else {
@@ -72,7 +79,7 @@ public class Expression {
             }
             return operator.apply(op1, op2);
         }
-        int operatorInd = 1;
+        int operatorInd = start + 1;
         Object o = l.get(start + 1);
         Operator operator;
         if (o instanceof Operator)
@@ -80,11 +87,11 @@ public class Expression {
         else
             throw new CorruptExpressionListException("Operator not found");
 
-        for (int i = 3; i < end; i += 2) {
+        for (int i = start+3; i < end; i += 2) {
             o = l.get(i);
             if (o instanceof Operator) {
                 Operator op = (Operator) o;
-                if (operator.getPrecedence() < op.getPrecedence()) {
+                if (operator.getPrecedence() >= op.getPrecedence()) {
                     operatorInd = i;
                     operator = op;
                 }
@@ -93,9 +100,8 @@ public class Expression {
             }
         }
 
-        Operand left = evaluate(l, operatorInd + 1, end);
-        Operand right = evaluate(l, 0, operatorInd);
-
+        Operand right = evaluate(l, operatorInd + 1, end);
+        Operand left = evaluate(l, 0, operatorInd);
         return operator.apply(left, right);
     }
 

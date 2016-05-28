@@ -32,6 +32,11 @@ public class AddOperator implements Operator{
         Operand fraction = new Operand((n1*d2 + n2*d1 ), d1*d2);
         fraction.simplify();
         return fraction;
-        
+
+    }
+
+    @Override
+    public String toString() {
+        return "Operation: +";
     }
 }

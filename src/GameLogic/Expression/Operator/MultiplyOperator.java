@@ -33,4 +33,9 @@ public class MultiplyOperator implements Operator{
         return op;
 
     }
+
+    @Override
+    public String toString() {
+        return "Operation: *";
+    }
 }

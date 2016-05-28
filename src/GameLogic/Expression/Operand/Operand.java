@@ -53,4 +53,12 @@ public class Operand {
         }
         return a;
     }
+
+    @Override
+    public String toString() {
+        return "Operand{" +
+                "numerator=" + numerator +
+                ", denominator=" + denominator +
+                '}';
+    }
 }
