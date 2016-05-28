@@ -3,6 +3,6 @@ package GameLogic.Expression.Operations;
 /**
  * Created by Yuhan on 5/28/16.
  */
-public interface Operation {
+public interface Operator {
     int apply(int a, int b);
 }
