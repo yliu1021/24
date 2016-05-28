@@ -34,12 +34,12 @@ public class Operand {
     }
 
     public void simplify() {
-        int gcd = gcd(numerator, denominator);
-        numerator /= gcd;
-        denominator /= gcd;
+        int gcf = gcf(numerator, denominator);
+        numerator /= gcf;
+        denominator /= gcf;
     }
 
-    private int gcd(int a, int b) {
+    private int gcf(int a, int b) {
         while (b != 0) {
             int t = b;
             b = a % b;
