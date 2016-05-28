@@ -20,7 +20,7 @@ public class Player {
     double timePenalty = 0.0;
 
     public int getScore() {
-        
+
     }
 
     public int getExpressionValue() {
