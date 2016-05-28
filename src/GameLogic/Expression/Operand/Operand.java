@@ -4,22 +4,47 @@ package GameLogic.Expression.Operand;
  * Created by Yuhan on 5/28/16.
  */
 public class Operand {
-    private int value;
+    private int numerator;
+    private int denominator;
 
-    public Operand(int value) {
-        this.value = value;
+    public Operand(int num) {
+        numerator = num;
+        denominator = 1;
     }
 
-    public int getValue() {
-        return value;
+    public Operand(int numerator, int denominator) {
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public int getNumerator() {
+        return numerator;
     }
 
-    @Override
-    public String toString() {
-        return Integer.toString(value);
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
+    }
+
+    public int getDenominator() {
+        return denominator;
+    }
+
+    public void setDenominator(int denominator) {
+        this.denominator = denominator;
+    }
+
+    public void simplify() {
+        int gcd = gcd(numerator, denominator);
+        numerator /= gcd;
+        denominator /= gcd;
+    }
+
+    private int gcd(int a, int b) {
+        while (b != 0) {
+            int t = b;
+            b = a % b;
+            a = t;
+        }
+        return a;
     }
 }
