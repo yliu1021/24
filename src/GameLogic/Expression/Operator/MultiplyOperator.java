@@ -14,5 +14,7 @@ public class MultiplyOperator implements Operator{
         Operand op = new Operand(n1*n2,d1*d2);
         op.simplify();
         return op;
+
+        // negative is on numerator
     }
 }

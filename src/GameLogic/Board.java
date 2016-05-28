@@ -5,4 +5,9 @@ package GameLogic;
  */
 public class Board {
 
+    Player player1 = new Player();
+    Player player2 = new Player();
+
+    // anthony 3:09 pm
+
 }

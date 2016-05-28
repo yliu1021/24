@@ -14,5 +14,7 @@ public class DivideOperator implements Operator{
         MultiplyOperator op = new MultiplyOperator();
         negB.simplify();
         return op.apply(a,negB);
+
+        // negative is on the denominator
     }
 }

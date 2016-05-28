@@ -13,5 +13,6 @@ public class AddOperator implements Operator{
         fraction.simplify();
         return fraction;
 
+        // negative is on the numerator
     }
 }
