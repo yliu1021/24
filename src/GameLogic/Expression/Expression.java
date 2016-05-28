@@ -40,19 +40,31 @@ public class Expression {
         }
     }
 
-    Operand evaluate() {
+    Operand evaluate() throws InvalidExpressionEvaluationException {
         return evaluate(ops);
     }
 
-    private Operand evaluate(List l) {
+    private Operand evaluate(List l) throws InvalidExpressionEvaluationException {
         if (l.size() < 3) {
-            throw new InvalidExpressionEvaluationException("")
+            throw new InvalidExpressionEvaluationException("Not enough operators/operands");
+        }
+        if (l.size() == 3) {
+            Operand op1;
+            Operand op2;
+            Operator operator;
+            Object o = l.get(0);
+            if (o instanceof Operand) {
+                op1 = (Operand) o;
+            } else {
+                throw new InvalidExpressionEvaluationException("");
+            }
         }
         for (Object o : l) {
             if (o instanceof Operator) {
 
             }
         }
+        return null;
     }
 
     void clear() {
