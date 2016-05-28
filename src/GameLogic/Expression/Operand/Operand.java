@@ -27,6 +27,9 @@ public class Operand {
     }
 
     public void setDenominator(int denominator) {
+        if (denominator == 0) {
+            throw new IllegalArgumentException("Can't set denominator to 0");
+        }
         this.denominator = denominator;
     }
 

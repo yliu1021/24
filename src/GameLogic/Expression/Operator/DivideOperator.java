@@ -23,6 +23,9 @@ public class DivideOperator implements Operator{
 
     @Override
     public Operand apply(Operand a, Operand b) {
+        if (b.getNumerator() == 0) {
+            throw new IllegalArgumentException("Dividing by 0");
+        }
         Operand negB = new Operand(b.getDenominator(),b.getNumerator());
         MultiplyOperator op = new MultiplyOperator(precedence);
         negB.simplify();
