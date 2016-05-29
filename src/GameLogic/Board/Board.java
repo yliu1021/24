@@ -12,7 +12,8 @@ import java.util.List;
 
 public class Board {
 
-    private static Operand finalValue = new Operand(24);
+    private static Operand goal = new Operand(24);
+    private static Operand penalty = new Operand(28);
 
     private Player player1 = new Player();
     private Player player2 = new Player();
@@ -42,12 +43,16 @@ public class Board {
             int r = start.getRow();
             int c = start.getCol();
             Expression horizontalExpression = getHorizontalExpression(r, c);
-            if (horizontalExpression.evaluate().equals(finalValue)) {
+            if (horizontalExpression.evaluate().equals(goal)) {
                 p.incrementScore(horizontalExpression.length());
+            } else if (horizontalExpression.evaluate().equals(penalty)) {
+                p.incrementScore(-horizontalExpression.length());
             }
             Expression verticalExpression = getVerticalExpression(r, c);
-            if (verticalExpression.evaluate().equals(finalValue)) {
+            if (verticalExpression.evaluate().equals(goal)) {
                 p.incrementScore(verticalExpression.length());
+            } else if (horizontalExpression.evaluate().equals(penalty)) {
+                p.incrementScore(-verticalExpression.length());
             }
         }
         clear(s);
@@ -63,7 +68,7 @@ public class Board {
                 if (o instanceof Number) {
                     Expression horizontalExpression = getHorizontalExpression(row, col);
                     Operand value = horizontalExpression.evaluate();
-                    if (value.equals(finalValue)) {
+                    if (value.equals(goal) || value.equals(penalty)) {
                         Location start = new Location(row, col);
                         Location end = new Location(row, col + horizontalExpression.length());
                         Segment segment = new Segment(start, end);
@@ -71,7 +76,7 @@ public class Board {
                     }
                     Expression verticalExpression = getVerticalExpression(row, col);
                     value = verticalExpression.evaluate();
-                    if (value.equals(finalValue)) {
+                    if (value.equals(goal) || value.equals(penalty)) {
                         Location start = new Location(row, col);
                         Location end = new Location(row + verticalExpression.length(), col);
                         Segment segment = new Segment(start, end);
