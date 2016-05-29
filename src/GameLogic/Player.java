@@ -1,23 +1,20 @@
 package GameLogic;
 
-import GameLogic.Expression.Expression;
 import GameLogic.Expression.Operator.Operator;
 import GameLogic.Powerups.Powerup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Yuhan on 5/28/16.
- */
 public class Player {
 
-    List<Operator> validOperators = new ArrayList();
-    List<Powerup> validPowerups = new ArrayList();
-    Expression expression;
+    List<Operator> validOperators = new ArrayList<>();
+    List<Powerup> validPowerups = new ArrayList<>();
 
     private double timePenalty;
     private int numWins;
+
+    private int score;
 
     public Player(){
         this.timePenalty = 0;
@@ -25,11 +22,15 @@ public class Player {
     }
 
     public int getScore() {
-        return 0;
+        return score;
     }
 
-    public int getExpressionValue() {
-        return 0;
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void incrementScore(int value) {
+        score += value;
     }
 
 }

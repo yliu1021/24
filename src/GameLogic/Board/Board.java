@@ -1,37 +1,109 @@
 package GameLogic.Board;
 
+import GameLogic.Board.Occupants.Blocker;
+import GameLogic.Board.Occupants.Number;
 import GameLogic.Board.Occupants.Occupant;
+import GameLogic.Expression.Expression;
+import GameLogic.Expression.Operand.Operand;
 import GameLogic.Player;
 
-/**
- * Created by Yuhan on 5/28/16.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
-    Player player1 = new Player();
-    Player player2 = new Player();
-    Occupant[][] occupants;
+    private static Operand finalValue = new Operand(24);
+
+    private Player player1 = new Player();
+    private Player player2 = new Player();
+    private Occupant[][] occupants;
 
     public Board(int size){
         occupants = new Occupant[size][size];
 
     }
 
-    public void setOccupant(Occupant o,Location l,Player p){
+    public void setOccupant(Occupant o, Location l, Player p) {
         int row = l.getRow();
         int col = l.getCol();
         occupants[row][col] = o;
-        Segment[] s = evaluate();
+        List<Segment> s = evaluate();
+        for (Segment segment : s) {
+            Location start = segment.getStart();
+            int r = start.getRow();
+            int c = start.getCol();
+            Expression horizontalExpression = getHorizontalExpression(r, c);
+            if (horizontalExpression.evaluate().equals(finalValue)) {
+                p.incrementScore(horizontalExpression.length());
+            }
+            Expression verticalExpression = getVerticalExpression(r, c);
+            if (verticalExpression.evaluate().equals(finalValue)) {
+                p.incrementScore(verticalExpression.length());
+            }
+        }
+        clear(s);
     }
 
-    public Segment[] evaluate(){
-        return null;
+    private List<Segment> evaluate() {
+        List<Segment> results = new ArrayList<>();
+
+        for (int row = 0; row < occupants.length; row++) {
+            for (int col = 0; col < occupants[row].length; col++) {
+                Occupant o = occupants[row][col];
+                if (o instanceof Number) {
+                    Expression horizontalExpression = getHorizontalExpression(row, col);
+                    Operand value = horizontalExpression.evaluate();
+                    if (value.equals(finalValue)) {
+                        Location start = new Location(row, col);
+                        Location end = new Location(row, col + horizontalExpression.length());
+                        Segment segment = new Segment(start, end);
+                        results.add(segment);
+                    }
+                    Expression verticalExpression = getVerticalExpression(row, col);
+                    value = verticalExpression.evaluate();
+                    if (value.equals(finalValue)) {
+                        Location start = new Location(row, col);
+                        Location end = new Location(row + verticalExpression.length(), col);
+                        Segment segment = new Segment(start, end);
+                        results.add(segment);
+                    }
+                }
+            }
+        }
+
+        return results;
     }
 
-    public void clear(Segment[] s){
-        for (int i = 0;i < s.length; i++){
-            Location start = s[i].getStart();
-            Location end = s[i].getEnd();
+    private Expression getHorizontalExpression(int row, int col) {
+        Expression e = new Expression();
+        for (; col < occupants[row].length; col++) {
+            Occupant o = occupants[row][col];
+            if (o != null && !(o instanceof Blocker)) {
+                e.add(o);
+            } else {
+                break;
+            }
+        }
+        return e;
+    }
+
+    private Expression getVerticalExpression(int row, int col) {
+        Expression e = new Expression();
+        for (; row < occupants.length; row++) {
+            Occupant o = occupants[row][col];
+            if (o != null && !(o instanceof Blocker)) {
+                e.add(o);
+            } else {
+                break;
+            }
+        }
+        return e;
+    }
+
+    private void clear(List<Segment> segments) {
+        for (Segment segment : segments) {
+            Location start = segment.getStart();
+            Location end = segment.getEnd();
             int row = start.getRow();
             int col = start.getCol();
 
@@ -45,7 +117,6 @@ public class Board {
                 start.setCol(col);
             }
         }
-
     }
 
 }

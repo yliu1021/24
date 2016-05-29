@@ -61,4 +61,22 @@ public class Operand {
                 ", denominator=" + denominator +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Operand operand = (Operand) o;
+
+        return numerator == operand.numerator && denominator == operand.denominator;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = numerator;
+        result = 31 * result + denominator;
+        return result;
+    }
 }

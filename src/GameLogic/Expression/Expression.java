@@ -6,9 +6,6 @@ import GameLogic.Expression.Operator.Operator;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Yuhan on 5/28/16.
- */
 public class Expression {
 
     private List<Object> ops;
@@ -44,7 +41,17 @@ public class Expression {
         }
     }
 
-    Operand evaluate() {
+    public void add(Object o) {
+        if (o instanceof Operator) {
+            addOperator((Operator) o);
+        } else if (o instanceof Operand) {
+            addOperand((Operand) o);
+        } else {
+            throw new CorruptExpressionListException("Can't add object " + o);
+        }
+    }
+
+    public Operand evaluate() {
         return evaluate(ops, 0, ops.size());
     }
 
@@ -105,8 +112,11 @@ public class Expression {
         return operator.apply(left, right);
     }
 
-    void clear() {
+    public void clear() {
         ops = new ArrayList<>();
     }
 
+    public int length() {
+        return ops.size();
+    }
 }
