@@ -20,10 +20,19 @@ public class Board {
 
     public Board(int size){
         occupants = new Occupant[size][size];
-
+        //TODO: gen random blockers
     }
 
-    public void setOccupant(Occupant o, Location l, Player p) {
+    public boolean canAdd(Location l, Player p) {
+        int row = l.getRow();
+        int col = l.getCol();
+        return occupants[row][col] == null;
+    }
+
+    public boolean setOccupant(Occupant o, Location l, Player p) {
+        if (!canAdd(l, p)) {
+            return false;
+        }
         int row = l.getRow();
         int col = l.getCol();
         occupants[row][col] = o;
@@ -42,6 +51,7 @@ public class Board {
             }
         }
         clear(s);
+        return true;
     }
 
     private List<Segment> evaluate() {
@@ -117,6 +127,10 @@ public class Board {
                 start.setCol(col);
             }
         }
+    }
+
+    public int getScore(Player p) {
+        return p.getScore();
     }
 
 }
