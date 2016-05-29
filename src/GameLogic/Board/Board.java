@@ -3,6 +3,7 @@ package GameLogic.Board;
 import GameLogic.Board.Occupants.Blocker;
 import GameLogic.Board.Occupants.Number;
 import GameLogic.Board.Occupants.Occupant;
+import GameLogic.Board.Occupants.Operation;
 import GameLogic.Expression.Expression;
 import GameLogic.Expression.Operand.Operand;
 import GameLogic.Player;
@@ -19,9 +20,32 @@ public class Board {
     private Player player2 = new Player();
     private Occupant[][] occupants;
 
-    public Board(int size){
-        occupants = new Occupant[size][size];
+    public Board(int length, int width){
+        occupants = new Occupant[length][width];
         //TODO: gen random blockers
+
+            for(int i = 0; i < occupants.length-1;i++){
+
+            if (i ==0 || i == occupants.length-1) {
+                for (int j = i % 2; j < occupants[0].length; j += 2) {
+                    occupants[i][j] = new Blocker(new Location(i, j));
+                }
+            }else if(i%2 == 0){
+                occupants[i][0] = new Blocker(new Location(i,0));
+            }else if((i + occupants[0].length-1) % 2 ==0){
+                occupants[i][occupants[0].length-1] = new Blocker(new Location(i,occupants[0].length-1));
+
+            }
+
+        }
+        for(int i = 1;i < occupants.length-1;i++){
+            for (int j = i%2;j< occupants.length-1;j+=2){
+                if(occupants[i][j] == null){
+                    if(Math.random()*20 <= 1)
+                    occupants[i][j] = new Blocker(new Location(i,j));
+                }
+            }
+        }
     }
 
     public boolean canAdd(Location l, Player p) {
